@@ -1,0 +1,33 @@
+[package]
+name = "saori-pie-chart"
+version = "1.0.0"
+edition = "2021"
+authors = [ "tukinami seika" ]
+license = "MIT"
+readme = "README.md"
+description = "SAORI to create pie chart png image."
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+svg-pie-chart = { git = "https://github.com/tukinami/svg-pie-chart.git" }
+resvg = { version = "0.31.1", default-features = false, features = [ "text", "system-fonts" ] }
+png = "0.17.8"
+
+[target.'cfg(windows)'.dependencies]
+winapi = {version = "0.3.9", features = ["winbase", "libloaderapi", "stringapiset"]}
+
+[dev-dependencies]
+tempfile = "3.3.0"
+encoding_rs = "0.8.31"
+
+[lib]
+name = "piechart"
+path = "src/lib.rs"
+crate-type = ["rlib", "cdylib"]
+
+[profile.release]
+strip = true
+opt-level = "z"
+lto = true
+codegen-units = 1
