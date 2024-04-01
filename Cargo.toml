@@ -11,15 +11,15 @@ description = "SAORI to create pie chart png image."
 
 [dependencies]
 svg-pie-chart = { git = "https://github.com/tukinami/svg-pie-chart.git" }
-resvg = { version = "0.31.1", default-features = false, features = [ "text", "system-fonts" ] }
-png = "0.17.8"
+resvg = { version = "0.40.0", default-features = false, features = [ "text", "system-fonts", "memmap-fonts" ] }
+png = "0.17.13"
 
 [target.'cfg(windows)'.dependencies]
-winapi = {version = "0.3.9", features = ["winbase", "libloaderapi", "stringapiset"]}
+winapi = { version = "0.3.9", features = ["winbase", "libloaderapi", "stringapiset"] }
 
 [dev-dependencies]
-tempfile = "3.3.0"
-encoding_rs = "0.8.31"
+tempfile = "3.10.1"
+encoding_rs = "0.8.33"
 
 [lib]
 name = "piechart"
