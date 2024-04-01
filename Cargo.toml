@@ -1,6 +1,6 @@
 [package]
 name = "saori-pie-chart"
-version = "1.0.0"
+version = "1.0.1"
 edition = "2021"
 authors = [ "tukinami seika" ]
 license = "MIT"
