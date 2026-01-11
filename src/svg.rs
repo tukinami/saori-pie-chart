@@ -1,3 +1,5 @@
+use std::sync::Arc;
+
 use resvg::{
     tiny_skia::{Pixmap, Transform},
     usvg::{Options, Tree},
@@ -15,10 +17,11 @@ where
 
     let mut fontdb = resvg::usvg::fontdb::Database::new();
     fontdb.load_system_fonts();
+    options.fontdb = Arc::new(fontdb);
 
-    let tree = Tree::from_str(svg_src.as_ref(), &options, &fontdb)?;
+    let tree = Tree::from_str(svg_src.as_ref(), &options)?;
 
-    let viewbox_rect = tree.view_box().rect;
+    let viewbox_rect = tree.size();
     let mut pixmap = Pixmap::new(viewbox_rect.width() as u32, viewbox_rect.height() as u32)
         .ok_or(PieChartError::SizeTooSmall)?;
 
